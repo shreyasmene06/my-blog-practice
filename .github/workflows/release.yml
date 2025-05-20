@@ -1,24 +1,22 @@
-name: Auto‑Tag Release
-
 on:
-  push:
-    branches:
-      - main
+push:
+branches:
+- main
 
 permissions:
-  contents: write
+contents: write
 
 jobs:
-  tag:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Needed so tags work properly
+tag:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout code
+uses: actions/checkout@v4
+with:
+fetch-depth: 0
 
-      - name: Auto‑tag
-        uses: Klemensas/action-autotag@stable
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag_prefix: "v"  # Optional: changes the tag format to v1.0.0
+- name: Auto‑tag (Node)
+uses: Klemensas/action-autotag@stable
+with:
+GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+tag_prefix: "v"
